@@ -20,13 +20,13 @@ namespace School_Administrator.Controllers
             _context = context;
         }
 
-        // GET: Institutions
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             return View(await _context.institutions.ToListAsync());
         }
 
-        // GET: Institutions/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,18 +44,15 @@ namespace School_Administrator.Controllers
             return View(institution);
         }
 
-        // GET: Institutions/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Institutions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Institution institution)
+        public async Task<IActionResult> Create(Institution institution)
         {
             if (ModelState.IsValid)
             {
